@@ -1,0 +1,31 @@
+body {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+.main-calc {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    width: 450px ;
+    border:  2px solid black;
+}
+.display {
+     height: 100px;
+     border-bottom:  2px solid black;
+}
+.button {
+      height: 50px;
+      width : 50px ;
+}
+.button-container {
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    flex : 1 ;
+}
+.numerals, .operators {
+    display: flex;
+}
+
