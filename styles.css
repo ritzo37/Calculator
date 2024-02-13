@@ -9,13 +9,13 @@ body {
     flex-direction: column;
     height: 200px;
     width: 450px ;
-    border:  2px solid black;
+    border: 2px solid black ;
 }
 .display {
      height: 100px;
      border-bottom:  2px solid black;
 }
-.button {
+.button,.operator {
       height: 50px;
       width : 50px ;
 }
