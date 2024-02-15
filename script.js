@@ -37,6 +37,7 @@ const display = document.querySelector('.display');
 const clear = document.querySelector('.clear');
 const operators = document.querySelectorAll('.operator');
 const equalTo = document.querySelector('.equal');
+const deleteBtn = document.querySelector('.del');
 
 let input = "";
 buttonsList.forEach((button) => {
@@ -57,8 +58,6 @@ clear.addEventListener('click', () => {
 
 operators.forEach((operator) => {
     operator.addEventListener('click', (event) => {
-        console.log("start 1 " + num1);
-        console.log("start 2 " + num2);
 
         if (num1 == undefined && input.length) {
             num1 = +(input);
@@ -87,13 +86,7 @@ operators.forEach((operator) => {
             op = undefined;
         }
 
-        console.log(num1);
-        console.log(num2);
-
         op = event.target.textContent;
-
-        console.log("end 1 " + num1);
-        console.log("end 2 " + num2);
     })
 })
 
@@ -114,8 +107,13 @@ equalTo.addEventListener('click', () => {
         num2 = undefined;
         op = undefined;
     }
+})
 
-
-
+deleteBtn.addEventListener('click',()=>{
+       let inputString = input ; 
+       let len = inputString.length ; 
+       let newString = input.substring(0,len-1);
+       input = newString ; 
+       display.textContent = input ;
 })
 
