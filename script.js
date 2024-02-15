@@ -72,19 +72,20 @@ clear.addEventListener('click', () => {
 
 operators.forEach((operator) => {
     operator.addEventListener('click', (event) => {
-
+        
+        console.log(input);
         if (num1 == undefined && input.length) {
             num1 = +(input);
             input = "";
         }
 
-        else if (num1 && num2 == undefined && input.length) {
+        else if (num1!=undefined && num2 == undefined && input.length) {
             num2 = +(input);
-            input = 0;
+            input = "";
         }
 
 
-        if (num1 && num2 === 0 && op == "/") {
+        if (((num1==0) || num1) && num2 === 0 && op == "/") {
             display.textContent = "Just don't !";
             num1 = undefined;
             num2 = undefined;
@@ -108,8 +109,10 @@ operators.forEach((operator) => {
 
 equalTo.addEventListener('click', () => {
 
-    if (num1 != undefined && input.length) num2 = +(input);
-    if (num2 == 0 && num1 && op == '/') {
+    if (num1 != undefined && input.length)  {
+        num2 = +(input); // this case handles the equal to press after the result has been displayed!s
+    }
+    if (num2 == 0 && (num1 || (num1==0)) && op == '/') {
         display.textContent = "Just don't !";
         num1 = undefined;
         num2 = undefined;
