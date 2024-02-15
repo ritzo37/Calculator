@@ -23,8 +23,19 @@ let num1 = undefined;
 let num2 = undefined;
 let op;
 
+let prevNum1 = undefined ; 
+let prevNum2 = undefined ; 
+let prevOp = undefined ; 
 
 
+function populatePrevDisplay(num1,num2,op) {
+     string  = num1 + " " + op + " " + num2 ; 
+     prevDisplay.textContent = string ;
+}
+
+function clearPreviousDisplay() {
+     prevDisplay.textContent = "" ;
+}
 
 function operate(num1, num2, op) {
     let result = methods[op](num1, num2);
@@ -38,14 +49,16 @@ const clear = document.querySelector('.clear');
 const operators = document.querySelectorAll('.operator');
 const equalTo = document.querySelector('.equal');
 const deleteBtn = document.querySelector('.del');
+const prevDisplay = document.querySelector('.prevDisplay');
 
 let input = "";
 buttonsList.forEach((button) => {
     button.addEventListener('click', (event) => {
-
+        
+        if (input.length<=9) {
         input += (event.target.innerText);
         display.textContent = input;
-
+        }
     })
 })
 
@@ -54,6 +67,7 @@ clear.addEventListener('click', () => {
     num1 = undefined;
     num2 = undefined;
     display.textContent = " ";
+    clearPreviousDisplay() ;
 })
 
 operators.forEach((operator) => {
@@ -75,11 +89,13 @@ operators.forEach((operator) => {
             num1 = undefined;
             num2 = undefined;
             input = "";
+            clearPreviousDisplay() ;
         }
 
         else if (num1 && num2 && op) {
             let tempResult = operate(num1, num2, op);
             display.textContent = tempResult;
+            populatePrevDisplay(num1,num2,op);
             num1 = tempResult;
             num2 = undefined;
             input = "";
@@ -98,14 +114,17 @@ equalTo.addEventListener('click', () => {
         num1 = undefined;
         num2 = undefined;
         input = "";
+        clearPreviousDisplay() ;
     }
     else if (num1 != undefined && num2 != undefined && input.length) {
         let tempResult = operate(num1, num2, op);
         display.textContent = tempResult;
+        populatePrevDisplay(num1,num2,op);
         num1 = undefined;
         input = String(tempResult);
         num2 = undefined;
         op = undefined;
+        
     }
 })
 

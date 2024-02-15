@@ -14,7 +14,7 @@ body {
     width: fit-content ;
     border: 2px solid black ;
 }
-.display {
+.display , .prevDislay {
      height: 150px;
      border-bottom:  2px solid black;
      display: flex;
