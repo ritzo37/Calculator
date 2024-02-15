@@ -18,14 +18,17 @@ let methods = {
 
 }
 
-let num1 = 0;
-let num2 = 0;
+
+let num1 = undefined;
+let num2 = undefined;
 let op;
-let result = false;
+
+
 
 
 function operate(num1, num2, op) {
-    return methods[op](num1, num2);
+    let result = methods[op](num1, num2);
+    return result;
 }
 
 
@@ -35,59 +38,84 @@ const clear = document.querySelector('.clear');
 const operators = document.querySelectorAll('.operator');
 const equalTo = document.querySelector('.equal');
 
-let input = 0;
+let input = "";
 buttonsList.forEach((button) => {
     button.addEventListener('click', (event) => {
 
-        display.textContent = " ";
-        input = input * 10 + +(event.target.innerText);
+        input += (event.target.innerText);
         display.textContent = input;
 
     })
 })
 
 clear.addEventListener('click', () => {
-    input = 0;
-    num1 = 0;
-    num2 = 0;
+    input = "";
+    num1 = undefined;
+    num2 = undefined;
     display.textContent = " ";
 })
 
 operators.forEach((operator) => {
     operator.addEventListener('click', (event) => {
+        console.log("start 1 " + num1);
+        console.log("start 2 " + num2);
 
-        if (!num1) {
-            num1 = input;
+        if (num1 == undefined && input.length) {
+            num1 = +(input);
+            input = "";
+        }
+
+        else if (num1 && num2 == undefined && input.length) {
+            num2 = +(input);
             input = 0;
         }
 
-        else if (!num2 && input) {
-            num2 = input;
-            input = 0;
-            result = false ;
+
+        if (num1 && num2 === 0 && op == "/") {
+            display.textContent = "Just don't !";
+            num1 = undefined;
+            num2 = undefined;
+            input = "";
         }
 
-
-        if (num1 && num2) {
-            display.textContent = operate(num1, num2, op);
-            num1 = operate(num1, num2, op);
-            num2 = 0;
-            input = 0 ;
+        else if (num1 && num2 && op) {
+            let tempResult = operate(num1, num2, op);
+            display.textContent = tempResult;
+            num1 = tempResult;
+            num2 = undefined;
+            input = "";
+            op = undefined;
         }
 
-        op = event.target.innerText;
+        console.log(num1);
+        console.log(num2);
 
+        op = event.target.textContent;
+
+        console.log("end 1 " + num1);
+        console.log("end 2 " + num2);
     })
 })
 
 equalTo.addEventListener('click', () => {
 
-      if (num1 && input) {
-        num2 = input;
-        display.textContent = operate(num1, num2, op);
-        num1 = operate(num1, num2, op);
-        num2 = 0;
-        input = 0;
+    if (num1 != undefined && input.length) num2 = +(input);
+    if (num2 == 0 && num1 && op == '/') {
+        display.textContent = "Just don't !";
+        num1 = undefined;
+        num2 = undefined;
+        input = "";
     }
+    else if (num1 != undefined && num2 != undefined && input.length) {
+        let tempResult = operate(num1, num2, op);
+        display.textContent = tempResult;
+        num1 = undefined;
+        input = String(tempResult);
+        num2 = undefined;
+        op = undefined;
+    }
+
+
+
 })
 

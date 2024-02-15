@@ -3,17 +3,25 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 90vh;
+    user-select: none;
+    background-color: #414141;
 }
 .main-calc {
     display: flex;
     flex-direction: column;
-    height: 200px;
-    width: 450px ;
+    height: 350px;
+    scale: 1.5 ;
+    width: fit-content ;
     border: 2px solid black ;
 }
 .display {
-     height: 100px;
+     height: 150px;
      border-bottom:  2px solid black;
+     display: flex;
+     justify-content: flex-end;
+     align-items: end;
+     color: white;
+     font-size: 32px;
 }
 .button,.operator {
       height: 50px;
@@ -22,10 +30,29 @@ body {
 .button-container {
     display: flex;
     flex-direction: column;
-    display: flex;
-    flex : 1 ;
+    /* flex : 1 ; */
 }
 .numerals, .operators {
     display: flex;
 }
+.row {
+    display: flex;
+}
+.row div {
+    background-color: rgb(147, 57, 71);
+    border : 1px solid black;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+}
 
+.row.last .equal {
+    border : 1px solid black;
+    flex : 1 ;
+}
+
+.row.first  div{
+    flex-grow: 1;
+}
