@@ -31,7 +31,7 @@ body {
 .button-container {
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: rgb(43, 39, 39);
 }
 .numerals, .operators {
     display: flex;
@@ -40,6 +40,9 @@ body {
     display: flex;
 }
 .row div {
+    color: white;
+    transition-property: background-color;
+    transition-duration: 0.8s;
     height: 50px;
     display: flex;;
     justify-content: center;
@@ -59,5 +62,9 @@ body {
 .prevDisplay {
     display: flex;
     color : white ; 
+    background-color: rgb(99, 133, 144) ;
+}
+
+.row div:hover {
     background-color: rgb(99, 133, 144) ;
 }

@@ -1,19 +1,19 @@
 let methods = {
 
     "+": function (a, b) {
-        return a + b;
+        return (a + b) % 1 == 0 ? a+b : (a+b).toFixed(2);
     },
 
     "-": function (a, b) {
-        return a - b;
+        return (a - b) % 1 == 0 ? a-b : (a-b).toFixed(2);
     },
 
     "*": function (a, b) {
-        return a * b;
+        return (a * b) % 1 == 0 ? a*b : (a*b).toFixed(2);
     },
 
     "/": function (a, b) {
-        return (a / b).toFixed(2);
+        return (a * b) % 1 == 0 ? a*b : (a*b).toFixed(2);
     }
 
 }
@@ -36,10 +36,11 @@ function operate(num1, num2, op) {
     let result = methods[op](num1, num2);
 
     let tempString = String(result);
-
+    console.log(result);
     if (tempString.length>12){
         result = result.toExponential(2);
     }
+   
     return result;
 }
 
@@ -51,6 +52,7 @@ const operators = document.querySelectorAll('.operator');
 const equalTo = document.querySelector('.equal');
 const deleteBtn = document.querySelector('.del');
 const prevDisplay = document.querySelector('.prevDisplay');
+const dot = document.querySelector('.dot');
 
 let input = "";
 buttonsList.forEach((button) => {
@@ -139,3 +141,11 @@ deleteBtn.addEventListener('click',()=>{
        display.textContent = input ;
 })
 
+dot.addEventListener('click',()=>{
+      let currInput = input ; 
+      let currInputArr = currInput.split('.');
+      if (currInputArr.length==1) {
+      input+=".";
+      display.textContent=input ;
+      }
+})
