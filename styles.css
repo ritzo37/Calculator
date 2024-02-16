@@ -14,7 +14,8 @@ body {
     width: fit-content ;
     border: 2px solid black ;
 }
-.display , .prevDislay {
+.display{
+     background-color: rgb(99, 133, 144);
      height: 150px;
      border-bottom:  2px solid black;
      display: flex;
@@ -30,7 +31,7 @@ body {
 .button-container {
     display: flex;
     flex-direction: column;
-    /* flex : 1 ; */
+    background-color: white;
 }
 .numerals, .operators {
     display: flex;
@@ -39,20 +40,24 @@ body {
     display: flex;
 }
 .row div {
-    background-color: rgb(147, 57, 71);
-    border : 1px solid black;
     height: 50px;
-    display: flex;
+    display: flex;;
     justify-content: center;
     align-items: center;
     width: 50px;
 }
 
 .row.last .equal {
-    border : 1px solid black;
+    /* border : 1px solid black; */
     flex : 1 ;
 }
 
 .row.first  div{
     flex-grow: 1;
+}
+
+.prevDisplay {
+    display: flex;
+    color : white ; 
+    background-color: rgb(99, 133, 144) ;
 }
