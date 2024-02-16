@@ -23,11 +23,6 @@ let num1 = undefined;
 let num2 = undefined;
 let op;
 
-let prevNum1 = undefined ; 
-let prevNum2 = undefined ; 
-let prevOp = undefined ; 
-
-
 function populatePrevDisplay(num1,num2,op) {
      string  = num1 + " " + op + " " + num2 ; 
      prevDisplay.textContent = string ;
@@ -39,6 +34,12 @@ function clearPreviousDisplay() {
 
 function operate(num1, num2, op) {
     let result = methods[op](num1, num2);
+
+    let tempString = String(result);
+
+    if (tempString.length>12){
+        result = result.toExponential(2);
+    }
     return result;
 }
 
@@ -73,7 +74,6 @@ clear.addEventListener('click', () => {
 operators.forEach((operator) => {
     operator.addEventListener('click', (event) => {
         
-        console.log(input);
         if (num1 == undefined && input.length) {
             num1 = +(input);
             input = "";
@@ -110,7 +110,7 @@ operators.forEach((operator) => {
 equalTo.addEventListener('click', () => {
 
     if (num1 != undefined && input.length)  {
-        num2 = +(input); // this case handles the equal to press after the result has been displayed!s
+        num2 = +(input); 
     }
     if (num2 == 0 && (num1 || (num1==0)) && op == '/') {
         display.textContent = "Just don't !";
