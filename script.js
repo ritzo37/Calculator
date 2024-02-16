@@ -13,7 +13,7 @@ let methods = {
     },
 
     "/": function (a, b) {
-        return (a * b) % 1 == 0 ? a*b : (a*b).toFixed(2);
+        return (a / b) % 1 == 0 ? a/b : (a/b).toFixed(2);
     }
 
 }
